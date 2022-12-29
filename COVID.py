@@ -130,3 +130,4 @@ plt.tight_layout()
 plt.show()
 #covid12    
 #hello lina cc
+#linaa nrmlmnt raho yamchi hh 
