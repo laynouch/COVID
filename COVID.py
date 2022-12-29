@@ -54,7 +54,7 @@ for country in list(dfC.columns):
     country_list.append(country)
     value_list.append(dfC[country].max())
     fatality_list.append(dfF[country].max())
-    new={'Country':country_list,'ConfirmedC':value_list,'Fatality':fatality_list}
+    new={'Country':country_list,'Confirmed':value_list,'Fatality':fatality_list}
 
 df=pd.DataFrame.from_dict(new)
 df.set_index('Country',inplace=True)
