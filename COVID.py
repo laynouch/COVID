@@ -129,4 +129,4 @@ for i,country in enumerate(list_countries):
 plt.tight_layout()
 plt.show()
 #covid12    
-#hello lina
+#hello lina cc
