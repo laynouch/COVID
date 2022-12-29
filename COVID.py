@@ -128,3 +128,4 @@ for i,country in enumerate(list_countries):
     plt.legend(title='country')
 plt.tight_layout()
 plt.show()
+#covid12    
