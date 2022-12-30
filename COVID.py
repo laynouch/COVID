@@ -65,7 +65,7 @@ print(df) #data fiha country + confirmedcases +fatalities
 
 #Visualisations 
 
-#descending order of coutries ' confirmedcases'
+#descending order of coutries ' confirmedcases' 'Fatality'
 or_conf = df.sort_values(by=['Confirmed'],ascending=False)
 or_fat = df.sort_values(by=['Fatality'],ascending=False)
 topconf = or_conf.head(10)
@@ -73,7 +73,9 @@ topFat=or_fat.head(10)
 print("________________________________________________________")
 print(topconf)
 print(topFat)
-#descending order of coutries ' Fatilities'
+
+
+
 
 
 #ConfirmedCases by Country
@@ -87,6 +89,7 @@ plt.ylabel('ConfirmedC')
 plt.show()
 
 #Fatilities by Country
+
 plt.bar(topFat.index,topFat['Fatality'], color=['black','brown','blue', 'blueviolet', 'aqua','orange', 'cornflowerblue', 'yellow','green','red']) 
 
 plt.title('Fatality by Country')
@@ -99,32 +102,18 @@ plt.show()
 listC=list(topconf.index)
 listC.append('India')
 listC.append('Pakistan')
+listC.append('China') #the beginnig of the covid19
 print("--------------------------------------------------")
 print(listC)
 
-#confirmedCases by dates
-#Seaborn line chart visualisation
-
-
-
-
-
-list_countries=list(topconf.index)
-list_countries.append('India')
-list_countries.append('Pakistan')
-
-Confirm_pivot=pd.pivot_table(DataTr,index='Date',columns='Country_Region',
-                             values='ConfirmedCases',aggfunc=np.sum)
-Confirm_pivot
-
-
+#Daily cases
 plt.figure(figsize=(10,6))
-colors=['r','b','g','y','orange','purple','m','hotpink','violet','darkgreen','navy','brown']
-for i,country in enumerate(list_countries):
-    Confirm=Confirm_pivot[Confirm_pivot[country]>0][country].diff().fillna(0)
-    Confirm=Confirm[Confirm>0]
-    Confirm.plot(color=colors[i],label=country,markersize=8,lw=3)   
-    plt.title('Number of Daily Cases',fontsize=15)
+colors=['r','b','g','y','orange','purple','m','hotpink','violet','darkgreen','navy','brown','black']
+for i,country in enumerate(listC):
+    Dcases=dfC[dfC[country]>0][country].diff().fillna(0)
+    Dcases=Dcases[Dcases>0]
+    Dcases.plot(color=colors[i],label=country,markersize=8,lw=3)   
+    plt.title('Daily Cases',fontsize=16)
     plt.legend(title='country')
 plt.tight_layout()
 plt.show()
