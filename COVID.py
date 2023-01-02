@@ -119,6 +119,7 @@ for i,country in enumerate(listC):
 plt.tight_layout()
 plt.show()
 
+
 #correlation between confirmed cases and fatalities
 
 ConfC=DataTr.groupby('Date')['ConfirmedCases'].sum()
@@ -129,3 +130,4 @@ ax.set_title('Correlation between confirmedcases and fatalities')
 ax.set_xlabel('ConfirmedCases')
 ax.set_ylabel('Fatalities')
 plt.show()
+
