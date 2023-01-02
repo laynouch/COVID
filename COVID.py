@@ -83,9 +83,10 @@ fig, ax = plt.subplots()
 
 plt.bar(topconf.index,topconf['Confirmed'],color=['black','brown','blue', 'blueviolet', 'aqua','orange', 'cornflowerblue', 'yellow','green','red'] ) 
              
-plt.title('ConfirmedCases by Country')
-plt.xlabel('Country')
-plt.ylabel('ConfirmedC')
+plt.title('ConfirmedCases by Country', size='16')
+
+plt.xlabel('Country', size='16')
+plt.ylabel('ConfirmedC', size='16')
 plt.show()
 
 #Fatilities by Country
@@ -117,7 +118,17 @@ for i,country in enumerate(listC):
     plt.legend(title='country')
 plt.tight_layout()
 plt.show()
-#covid12    
-#hello lina cc
-#linaa nrmlmnt raho yamchi hh 
-#commit ta3i hh
+
+
+#correlation between confirmed cases and fatalities
+
+ConfC=DataTr.groupby('Date')['ConfirmedCases'].sum()
+Fatali=DataTr.groupby('Date')['Fatalities'].sum()
+fig, ax = plt.subplots()
+ax.scatter(x=ConfC , y= Fatali ,color='r')
+ax.set_title('Correlation between confirmedcases and fatalities')
+ax.set_xlabel('ConfirmedCases')
+ax.set_ylabel('Fatalities')
+plt.show()
+
+#heyyy dawoud
