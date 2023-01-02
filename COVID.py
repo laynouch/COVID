@@ -120,4 +120,4 @@ plt.show()
 #covid12    
 #hello lina cc
 #linaa nrmlmnt raho yamchi hh 
-#teste khlaf hh 
+#commit ta3i hh
