@@ -58,7 +58,7 @@ for country in list(dfC.columns):
 
 df=pd.DataFrame.from_dict(new)
 df.set_index('Country',inplace=True)
-print("00000000000000000000000000000000000000000000000")
+print("________________________________________________________________")
 print(df) #data fiha country + confirmedcases +fatalities
 
 
@@ -107,15 +107,50 @@ listC.append('China') #the beginnig of the covid19
 print("--------------------------------------------------")
 print(listC)
 
+#Cumulative trend plot for Confirmed Cases
+print("___________________________________________________________")
+timesercntr = DataTr.groupby(['Date','Country_Region'])['ConfirmedCases'].sum()\
+                    .reset_index().set_index('Date')
+dfcountries= timesercntr[timesercntr['Country_Region'].isin(listC)]
+
+
+plt.figure(figsize=(16,12))
+ax = sns.lineplot(x=dfcountries.index, 
+                  y="ConfirmedCases", 
+                  hue="Country_Region", 
+                  data=dfcountries,palette='muted').set_title('Cumulative line')
+
+plt.legend(loc=2, prop={'size': 16})
+plt.title('Cumulative trend plot for Confirmed Cases')
+plt.xticks(rotation=90)
+plt.show()
+
+
 #Daily cases
 plt.figure(figsize=(10,6))
-colors=['r','b','g','y','orange','purple','m','hotpink','violet','darkgreen','navy','brown','black']
+colors=['black','brown','blue', 'blueviolet', 'aqua','orange', 'cornflowerblue', 'yellow','green','red','navy','purple','hotpink']
 for i,country in enumerate(listC):
     Dcases=dfC[dfC[country]>0][country].diff().fillna(0)
     Dcases=Dcases[Dcases>0]
     Dcases.plot(color=colors[i],label=country,markersize=8,lw=3)   
-    plt.title('Daily Cases',fontsize=16)
+    plt.title('Daily Cases',fontsize=20)
     plt.legend(title='country')
+plt.tight_layout()
+plt.show()
+
+#daily cases of each country (top 10)+india pakistane and chaina
+
+plt.figure(figsize=(20,16))
+colors=['black','brown','blue', 'blueviolet', 'aqua','orange', 'cornflowerblue', 'yellow','green','red','navy','purple','hotpink']
+for i,country in enumerate(listC):
+    Dcases=dfC[dfC[country]>0][country].diff()
+    Dcases=Dcases[Dcases>0]
+    plt.subplot(5,4,i+1)
+    Dcases.plot(color=colors[i],label=country,markersize=20,lw=4)    
+    plt.xticks()
+    plt.legend(title='Country')
+    print(end='')
+    plt.title('Number of Daily Cases in {}'.format(country.upper()))
 plt.tight_layout()
 plt.show()
 
@@ -131,4 +166,4 @@ ax.set_xlabel('ConfirmedCases')
 ax.set_ylabel('Fatalities')
 plt.show()
 
-#heyyy dawoud
+
